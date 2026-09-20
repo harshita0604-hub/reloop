@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Marketplace | ReLoop</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ========================= -->
+<!-- NAVIGATION -->
+<!-- ========================= -->
+
+<nav>
+
+    <div class="logo">
+        ♻️ ReLoop
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/business">
+            For Businesses
+        </a>
+
+        <a href="/marketplace">
+            Marketplace
+        </a>
+
+        <a href="/impact">
+            Impact
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ========================= -->
+<!-- MARKETPLACE -->
+<!-- ========================= -->
+
+<section class="marketplace">
+
+
+    <div class="dashboard-header">
+
+        <p class="tagline">
+            RELOOP MARKETPLACE
+        </p>
+
+        <h1>
+            Discover
+            <span>Better Deals.</span>
+        </h1>
+
+        <p>
+            Give useful products a second life
+            while saving money.
+        </p>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- PRODUCTS -->
+    <!-- ========================= -->
+
+    <div class="product-grid">
+
+
+        {% for product in products %}
+
+
+        <div class="product-card">
+
+
+            <!-- PRODUCT ICON -->
+
+            <div class="product-icon">
+                🛍️
+            </div>
+
+
+
+            <!-- PRODUCT NAME -->
+
+            <h2>
+                {{ product["name"] }}
+            </h2>
+
+
+
+            <!-- CATEGORY -->
+
+            <p class="category">
+                {{ product["category"] }}
+            </p>
+
+
+
+            <!-- CONDITION -->
+
+            <p>
+
+                Condition:
+
+                <strong>
+                    {{ product["condition"] }}
+                </strong>
+
+            </p>
+
+
+
+            <!-- DESCRIPTION -->
+
+            {% if product["description"] %}
+
+            <p style="
+                margin-top: 15px;
+                margin-bottom: 15px;
+                color: #657069;
+                line-height: 1.6;
+            ">
+
+                {{ product["description"] }}
+
+            </p>
+
+            {% endif %}
+
+
+
+            <!-- PRICE -->
+
+            <div class="price">
+
+                <span class="original">
+
+                    ₹{{ product["original_price"] }}
+
+                </span>
+
+
+                <span class="offer">
+
+                    ₹{{ product["offer_price"] }}
+
+                </span>
+
+            </div>
+
+
+
+            <!-- DISCOUNT -->
+
+            {% if product["original_price"] > 0 %}
+
+            <p style="
+                color: #16803a;
+                font-weight: 700;
+                margin-bottom: 10px;
+            ">
+
+                {{ (
+                    (
+                        product["original_price"]
+                        - product["offer_price"]
+                    )
+                    /
+                    product["original_price"]
+                    * 100
+                ) | round(0) }}% OFF
+
+            </p>
+
+            {% endif %}
+
+
+
+            <!-- QUANTITY -->
+
+            <p class="quantity">
+
+                {{ product["quantity"] }}
+                available
+
+            </p>
+
+
+
+            <!-- CLAIM -->
+
+            <a
+                href="/claim/{{ product['id'] }}"
+                class="btn primary"
+            >
+
+                Claim Deal ♻️
+
+            </a>
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- NO PRODUCTS -->
+
+        <div class="empty">
+
+            <h2>
+                No products yet
+            </h2>
+
+            <p>
+                Businesses haven't listed
+                any products yet.
+            </p>
+
+            <a
+                href="/business"
+                class="btn primary"
+            >
+
+                List a Product
+
+            </a>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</section>
+
+
+</body>
+
+</html>
