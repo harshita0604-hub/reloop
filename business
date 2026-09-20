@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business Dashboard | ReLoop</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        ♻️ ReLoop
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/business">
+            For Businesses
+        </a>
+
+        <a href="/marketplace">
+            Marketplace
+        </a>
+
+        <a href="/impact">
+            Impact
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="dashboard">
+
+
+    <!-- ========================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================= -->
+
+    <div class="dashboard-header">
+
+        <p class="tagline">
+            BUSINESS DASHBOARD
+        </p>
+
+        <h1>
+            Turn Surplus Into
+            <span>Value.</span>
+        </h1>
+
+        <p>
+            List your surplus or slow-moving products
+            and connect with consumers.
+        </p>
+
+    </div>
+
+
+
+    <!-- ========================= -->
+    <!-- PRODUCT FORM -->
+    <!-- ========================= -->
+
+    <div class="form-card">
+
+        <h2>
+            List a Product
+        </h2>
+
+
+        <form
+            action="/add-product"
+            method="POST"
+        >
+
+
+            <!-- PRODUCT NAME -->
+
+            <label>
+                Product Name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Example: Office Chair"
+                required
+            >
+
+
+
+            <!-- CATEGORY -->
+
+            <label>
+                Category
+            </label>
+
+            <select
+                name="category"
+                required
+            >
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option>
+                    Electronics
+                </option>
+
+                <option>
+                    Furniture
+                </option>
+
+                <option>
+                    Clothing
+                </option>
+
+                <option>
+                    Food
+                </option>
+
+                <option>
+                    Books
+                </option>
+
+                <option>
+                    Other
+                </option>
+
+            </select>
+
+
+
+            <!-- ORIGINAL PRICE -->
+
+            <label>
+                Original Price (₹)
+            </label>
+
+            <input
+                type="number"
+                name="original_price"
+                placeholder="1000"
+                min="1"
+                required
+            >
+
+
+
+            <!-- OFFER PRICE -->
+
+            <label>
+                Offer Price (₹)
+            </label>
+
+            <input
+                type="number"
+                name="offer_price"
+                placeholder="500"
+                min="1"
+                required
+            >
+
+
+
+            <!-- QUANTITY -->
+
+            <label>
+                Quantity
+            </label>
+
+            <input
+                type="number"
+                name="quantity"
+                placeholder="10"
+                min="1"
+                required
+            >
+
+
+
+            <!-- CONDITION -->
+
+            <label>
+                Condition
+            </label>
+
+            <select
+                name="condition"
+            >
+
+                <option>
+                    New
+                </option>
+
+                <option>
+                    Like New
+                </option>
+
+                <option>
+                    Good
+                </option>
+
+                <option>
+                    Used
+                </option>
+
+            </select>
+
+
+
+            <!-- SMART DESCRIPTION -->
+
+            <label>
+                Smart Description
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                rows="5"
+                placeholder="Click 'Generate Smart Description' to create a description..."
+                style="
+                    width: 100%;
+                    padding: 13px;
+                    border: 1px solid #d7dfda;
+                    border-radius: 8px;
+                    font-size: 15px;
+                    resize: vertical;
+                    font-family: Arial, sans-serif;
+                "
+            ></textarea>
+
+
+            <button
+                type="button"
+                class="btn secondary"
+                onclick="generateDescription()"
+            >
+                ✨ Generate Smart Description
+            </button>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="btn primary"
+            >
+                List Product ♻️
+            </button>
+
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================= -->
+<!-- SMART DESCRIPTION SCRIPT -->
+<!-- ========================= -->
+
+<script>
+
+function generateDescription() {
+
+    const name =
+        document.querySelector(
+            '[name="name"]'
+        ).value;
+
+    const category =
+        document.querySelector(
+            '[name="category"]'
+        ).value;
+
+    const originalPrice =
+        document.querySelector(
+            '[name="original_price"]'
+        ).value;
+
+    const offerPrice =
+        document.querySelector(
+            '[name="offer_price"]'
+        ).value;
+
+    const condition =
+        document.querySelector(
+            '[name="condition"]'
+        ).value;
+
+
+    /*
+       Check required information
+    */
+
+    if (
+        !name ||
+        !category ||
+        !originalPrice ||
+        !offerPrice
+    ) {
+
+        alert(
+            "Please fill Product Name, Category and Prices first."
+        );
+
+        return;
+    }
+
+
+    /*
+       Calculate discount
+    */
+
+    const discount =
+        Math.round(
+            (
+                (originalPrice - offerPrice)
+                / originalPrice
+            ) * 100
+        );
+
+
+    /*
+       Generate description
+    */
+
+    const description =
+
+        `${condition} ${category.toLowerCase()} product "${name}" ` +
+
+        `available at an attractive ${discount}% discount. ` +
+
+        `Original price: ₹${originalPrice}; ` +
+
+        `ReLoop offer price: ₹${offerPrice}. ` +
+
+        `Give this useful product a second life while saving money ` +
+
+        `and reducing unnecessary waste.`;
+
+
+    /*
+       Put description into textarea
+    */
+
+    document.getElementById(
+        "description"
+    ).value = description;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
