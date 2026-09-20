@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ReLoop</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            ♻️ ReLoop
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/business">For Businesses</a>
+            <a href="/marketplace">Marketplace</a>
+            <a href="/impact">Impact</a>
+        </div>
+    </nav>
+
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="tagline">
+                TECH FOR A BETTER TOMORROW
+            </p>
+
+            <h1>
+                Give Products<br>
+                <span>A Second Life.</span>
+            </h1>
+
+            <p class="description">
+                ReLoop connects businesses with consumers to
+                turn surplus products into value instead of waste.
+            </p>
+
+            <div class="buttons">
+
+                <a href="/business" class="btn primary">
+                    I'm a Business
+                </a>
+
+                <a href="#" class="btn secondary">
+                    Explore Deals
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="features">
+
+        <div class="feature-card">
+            <div class="icon">🏪</div>
+            <h3>For Businesses</h3>
+            <p>
+                Turn surplus inventory into revenue
+                instead of waste.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="icon">🛍️</div>
+            <h3>For Consumers</h3>
+            <p>
+                Discover quality products at
+                better prices.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="icon">🌱</div>
+            <h3>For the Planet</h3>
+            <p>
+                Keep useful products in circulation
+                for longer.
+            </p>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
