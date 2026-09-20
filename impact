@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Impact | ReLoop</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        ♻️ ReLoop
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/business">
+            For Businesses
+        </a>
+
+        <a href="/marketplace">
+            Marketplace
+        </a>
+
+        <a href="/impact">
+            Impact
+        </a>
+
+    </div>
+
+</nav>
+
+
+<section class="impact-page">
+
+    <div class="dashboard-header">
+
+        <p class="tagline">
+            RELOOP IMPACT
+        </p>
+
+        <h1>
+            Small Actions.
+            <span>Big Impact.</span>
+        </h1>
+
+        <p>
+            See how ReLoop helps businesses recover value,
+            consumers save money, and useful products stay
+            in circulation.
+        </p>
+
+    </div>
+
+
+    <div class="impact-grid">
+
+
+        <!-- Products Listed -->
+
+        <div class="impact-card">
+
+            <div class="impact-icon">
+                📦
+            </div>
+
+            <h2>
+                {{ total_products }}
+            </h2>
+
+            <p>
+                Products Listed
+            </p>
+
+        </div>
+
+
+        <!-- Available Products -->
+
+        <div class="impact-card">
+
+            <div class="impact-icon">
+                🛍️
+            </div>
+
+            <h2>
+                {{ available_quantity }}
+            </h2>
+
+            <p>
+                Products Available
+            </p>
+
+        </div>
+
+
+        <!-- Consumer Savings -->
+
+        <div class="impact-card">
+
+            <div class="impact-icon">
+                💰
+            </div>
+
+            <h2>
+                ₹{{ "%.0f"|format(total_savings) }}
+            </h2>
+
+            <p>
+                Potential Consumer Savings
+            </p>
+
+        </div>
+
+
+        <!-- Claimed Products -->
+
+        <div class="impact-card">
+
+            <div class="impact-icon">
+                ♻️
+            </div>
+
+            <h2>
+                {{ total_claimed }}
+            </h2>
+
+            <p>
+                Fully Claimed Products
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="impact-message">
+
+        <h2>
+            🌱 Give Products a Second Life
+        </h2>
+
+        <p>
+            Every product redirected from surplus to a consumer
+            represents value recovered by a business and a
+            potential reduction in unnecessary waste.
+        </p>
+
+        <a href="/marketplace"
+           class="btn primary">
+
+            Explore Marketplace
+
+        </a>
+
+    </div>
+
+</section>
+
+
+</body>
+
+</html>
